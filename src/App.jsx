@@ -1,12 +1,7 @@
-import Header from "./components/Header";
+import Login from "./pages/Login";
 
 function App() {
-  return (
-    <div>
-      <h1>Student Management System</h1>
-      <Header />
-    </div>
-  );
+  return <Login />;
 }
 
 export default App;
