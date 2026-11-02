@@ -6,9 +6,13 @@ export function useStudents() {
   const [loading, setLoading] = useState(true);
 
   const fetchStudents = async () => {
-    const res = await api.get("/students");
-    setStudents(res.data);
-    setLoading(false);
+    try {
+      const res = await api.get("/students");
+      // The API returns a paginated object { total, items }; the UI needs the array.
+      setStudents(Array.isArray(res.data) ? res.data : res.data.items ?? []);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const addStudent = async (student) => {
